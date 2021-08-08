@@ -1,15 +1,44 @@
 #include <iostream>
 using namespace std;
 
+
+bool printer(int **main_array , int m) {
+    for (int row = 0; row < m; row++) {
+        for (int column = 0; column < m; column++) {   // wywod;
+            cout << main_array[row][column] << "  ";
+
+        }
+        cout << endl;
+
+    }
+    return 0;
+}
+
+int find_max(int **main_array , int m ) {
+    int max = 0;
+    for (int row = 0; row < m; row++) {
+        for (int column = 0; column < m; column++) { //find_max ;
+            if (max < main_array[row][column]) {
+                max = main_array[row][column];
+            }
+
+        }
+        cout << endl;
+
+    }
+    return max;
+}
+
+
 int main() {
     srand(time(0));
     int n;
     
     cin >> n;
    
-    double** array = new double* [n];   // sozdanie 2m masiw;
+    int** array = new int* [n];   // sozdanie 2m masiw;
     for (int i = 0; i < n; i++) {
-        array[i] = new double[n];
+        array[i] = new int[n];
     }
 
     for (int row = 0; row < n; row++) {
@@ -18,26 +47,10 @@ int main() {
         }
     }
 
-    for (int row = 0; row < n; row++) {
-        for (int column = 0; column < n; column++) {   // wywod;
-            cout << array[row][column] << "  ";
+    printer(array ,n);
 
-        }
-        cout << endl;
+    int max = find_max(array, n);
 
-    }
-
-    int max = 0;
-    for (int row = 0; row < n; row++) {
-        for (int column = 0; column < n; column++) { //find_max ;
-            if (max < array[row][column]) {
-                max = array[row][column];
-            }
-
-        }
-        cout << endl;
-
-    }
     cout << "max value is " << max<<endl; 
     int x = 0;
     int y = 0;
@@ -74,14 +87,7 @@ int main() {
         cout << endl;
     }
     
-    for (int row = 0; row < n; row++) {
-        for (int column = 0; column < n; column++) {   // wywod;
-            cout << array[row][column] << "  ";
-
-        }
-        cout << endl;
-
-    }
+    printer(array , n );
 
     int helper2 = 0;
    
@@ -102,17 +108,8 @@ int main() {
            }
            cout << endl;
      }
-   
-   
 
-    for (int row = 0; row < n; row++) {
-        for (int column = 0; column < n; column++) {   // wywod;
-            cout << array[row][column] << "  ";
-
-        }
-        cout << endl;
-
-    }
+    printer(array, n);
 
     for(int i = 0; i < 2; i++)
         delete[]array[i]; // oswobozdenie pamyati .
