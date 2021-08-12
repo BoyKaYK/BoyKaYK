@@ -1,0 +1,71 @@
+#include <iostream>
+using namespace std;
+
+
+bool printer(int **main_array , int m) {
+    for (int row = 0; row < m; row++) {
+        for (int column = 0; column < m; column++) {   // wywod;
+            cout << main_array[row][column] << "  ";
+
+        }
+        cout << endl;
+
+    }
+    return 0;
+}
+
+int zeroing(int** main_array, int m,int counter) {
+    int x;
+    cout << "What column to make 0 ? ";
+    cin >> x;
+    if (x > m || x < 0) {
+        cout << "This matrix has only : " << m << " colums.";
+        cout << endl;
+        
+    }
+    else counter++;
+
+    for (int row = 0; row < m; row++) {
+        for (int column = 0; column < m; column++) {
+            if (column == x - 1) {
+                main_array[row][column] = 0;
+            }
+        }
+    }
+    printer(main_array, m);
+
+    return counter ;
+}
+
+
+
+
+int main() {
+    srand(time(0));
+    int n;
+    
+    cin >> n;
+   
+    int** array = new int* [n];   // sozdanie 2m masiw;
+    for (int i = 0; i < n; i++) {
+        array[i] = new int[n];
+    }
+
+    for (int row = 0; row < n; row++) {
+        for (int column = 0; column < n; column++) {
+            array[row][column] = (rand() % 10 + 1);    //zapolnienie rand. somwolami 0-10 ;
+        }
+    }
+    printer(array, n);
+
+    int counter = 0;
+
+    while (counter < n) {
+
+       counter = zeroing(array, n ,counter);
+       
+    }
+    cout << "There is '0' Matrix !";
+
+    return 0;
+}
