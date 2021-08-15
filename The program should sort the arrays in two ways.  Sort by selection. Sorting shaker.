@@ -1,0 +1,130 @@
+#include <iostream>
+#include <ctime>
+using namespace std;
+
+
+bool printer(int* main_array, int m) {
+    for (int row = 0; row < m; row++) {
+         
+        cout << main_array[row] << "  ";
+
+    }
+    return 0;
+}
+
+int sort_a(int* array, int m) {
+
+    int start_time = 0;
+    int end_time = 0;
+    int dur_time = 0;
+    int min;
+    int index; 
+    int temp_min;
+
+    start_time = clock();
+    for (int i = m - 1; i >= 1;i-- ) {
+        min = array[i];
+        index = i;
+        for (int j = i - 1; j >= 0; j--) {
+            if (min > array[j]) {
+                min = array[j];
+                index = j;
+            }
+        }
+
+        temp_min = array[index];
+        for (int x = index; x < i; x++) {
+            array[x] = array[x + 1];
+        }
+        array[i] = temp_min ;
+    }
+
+    
+    
+    end_time = clock();
+    
+    return dur_time = (end_time - start_time );
+}
+
+double sort_b(int* array,int m) {
+
+    double start_time = 0;
+    double end_time = 0;
+    double dur_time = 0;
+    
+    int temp;
+    int left, right;
+    left = 1;
+    right = m - 1;
+    start_time = clock();
+    do {
+        for (int i = right, j = left; i >= left, j <= right; i--, j++) {
+            if (array[i-1] > array[i]) {
+                temp = array[i];
+                array[i] = array[i - 1];
+                array[i - 1] = temp;
+            }
+            if (array[j-1]>array[j]) {
+                temp = array[j];
+                array[j] = array[j - 1];
+                array[j - 1] = temp;
+
+
+            }
+        }
+        left = left + 1;
+        right = right - 1;
+    } while (left <= right);
+    end_time = clock();
+
+    return dur_time = (end_time - start_time );
+
+}
+
+
+
+int main() {
+    srand(time(0));
+    int n;
+
+    cin >> n;
+
+    int* array = new int [n]; 
+    int* array_b = new int[n];
+    
+    
+    for (int row = 0; row < n; row++) {
+
+         array[row] = (rand() % 10 + 1);    //zapolnienie rand. somwolami 0-10 ;
+
+    }
+    array_b = array;
+    int command = 1;
+    while (command) {
+        cin >> command;
+        if (command == 1)
+        {
+            printer(array, n);
+        }
+        else if (command == 2)
+        {
+            printer(array_b, n);
+        }
+        else if (command == 3) {
+            int time_of_sort_a = sort_a(array, n);
+            cout << endl << "time of sort for the 1-st. way: " << time_of_sort_a << endl;
+        }
+        else if (command == 4) {
+            int time_of_sort_b = sort_a(array, n);
+            cout << endl << "time of sort for the 2-nd. way: " << time_of_sort_b << endl;
+        }
+        else
+            cout << "input one of the default commands (1 ,2 ,3 ,4)";
+
+    }
+
+    
+   delete[] array; // oswobozdenie pamyati .
+
+    return 0;
+}
