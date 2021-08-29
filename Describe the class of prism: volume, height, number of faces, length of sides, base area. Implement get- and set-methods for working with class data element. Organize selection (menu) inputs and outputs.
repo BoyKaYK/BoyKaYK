@@ -1,0 +1,129 @@
+#include <iostream>
+#include <ctime>
+using namespace std;
+
+class prisma {
+private:
+    double hight,
+        volume,
+        side_lenght,
+        s_base;
+    int face_num;
+
+public:
+    prisma(double h = 1, double side_l = 1, int f_num = 3, double sbase = 10);
+    void set_hight(const double &);
+    void set_lenght(const double &);
+    void set_face(const int &);
+    void set_sbase(const double &);
+
+    double get_hight() const;
+    int get_face() const;
+    double get_sbase() const;
+    double get_slenght() const;
+    double get_vol() ;
+
+};
+
+
+
+int main() {
+    prisma prism;
+    int command;
+    bool stop = false;
+    while (!stop) {
+        cout << "chose:\n0 - exit;  1 - show hight;\n2 - show faces number;"
+            << "  3 - show base volume ;\n4 - show lenght of sides;  5 - show prism volume;\n"
+            << "6 - set hight ;  7 - set lenght; \n8 - set faces number;  9 - set prism volume\n>> ";
+        cin >> command;
+        double temp;
+        switch (command) {
+        case 0: {stop = true;
+            break; }
+
+        case 1: {cout << "prism higth = " << prism.get_hight() << endl << endl;
+            break; }
+
+        case 2: {cout << "faces number = " << prism.get_face() << endl << endl;
+            break; }
+
+        case 3: {cout << "base volume = " << prism.get_sbase() << endl << endl;
+            break; }
+
+        case 4: {cout << "lenght of sides = " << prism.get_slenght() << endl << endl;
+            break; }
+
+        case 5: {cout << "prism volume = " << prism.get_vol() << endl << endl;
+            break; }
+
+        case 6: {cout << ":= "; cin >> temp; prism.set_hight(temp);
+            break; }
+
+        case 7: {cout << ":= "; cin >> temp; prism.set_lenght(temp);
+            break; }
+
+        case 8: {cout << ":= "; cin >> temp; prism.set_face(temp);
+            break; }
+
+        case 9: {cout << ":= "; cin >> temp; prism.set_sbase(temp);
+            break; }
+
+        default: {cout << "error :)\n"; }
+
+        }
+
+    }
+
+    
+    return 0;
+}
+
+prisma::prisma(double h, double side_l, int f_num, double sbase)
+    : hight(h), side_lenght(side_l), face_num(f_num), s_base(sbase), volume(h* sbase)
+{
+
+}
+ //sets
+void prisma::set_hight(const double& h)
+{
+    hight = (h > 0 ? h : 1); // if h > 0 then h = h, else h = 1;
+}
+void prisma::set_lenght(const double& l) 
+{
+    side_lenght = (l > 0 ? l : 1 );
+}
+void prisma::set_face(const int& number)
+{
+    face_num = (number > 0 ? number : 3);
+}
+
+void prisma::set_sbase(const double& vol)
+{
+    s_base = (vol > 0 ? vol : 10);
+}
+// returns
+
+double prisma::get_hight() const
+{
+    return hight;
+}
+int prisma::get_face() const
+{
+    return face_num;
+}
+double prisma::get_sbase() const
+{
+    return s_base;
+}
+double prisma::get_slenght() const
+{
+    return side_lenght;
+}
+double prisma::get_vol()
+{
+    volume = s_base * hight;
+    return volume;
+}
+
+
+
