@@ -1,0 +1,105 @@
+#include <iostream>
+#include <ctime>
+using namespace std;
+
+class account
+{
+private:
+    double balance;
+public:
+    account() {
+        balance = 0;
+    }
+    account(double b) {
+        balance = b;
+    }
+    void deposit(double amount) {
+        balance += amount;
+    }
+    void withdraw(double amount) {
+        balance -= amount;
+    }
+    double get_balance();
+
+};
+
+string log_on() {
+    string password; 
+    cout << "Set your Bank Account password " << endl;
+
+    cin >> password;
+    cout << endl;
+    return password;
+}
+bool log_in(string pas) 
+{
+    string pas_check;
+    cout << "Input the Bank Account password  to log in!" << endl;
+    cin >> pas_check;
+    cout << endl;
+    if (pas == pas_check) {
+        return true;
+    }
+    else return false;
+
+}
+
+
+
+int main() {
+    account my_account = account();
+    string command;
+    int amount;
+    bool stop = false;
+
+
+    string LogonPassword = log_on();
+    if (!log_in(LogonPassword)) {
+        cout << "no login";
+        return 0; 
+    }
+    cout << "input:\nEXIT to exit;\nDEPOSIT to deposit cash;\nWITHDRAW to withdraw cash;\n"
+        << "BALANCE to check your balance;"<< endl;
+
+    while (!stop) {
+        cin >> command;
+        if (command == "EXIT") {
+            stop = true;
+            cout << endl;
+        }
+
+        if (command == "DEPOSIT") {
+            cout << "Input the deposit amount !"<<endl;
+            cin >> amount;
+            my_account.deposit(amount);
+            cout << "Your deposit of "<< amount <<"$ has been successfully proceed !";
+            cout << endl;
+        }
+
+        if (command == "WITHDRAW") {
+            cout << "Input the withdraw amount !" << endl;
+            cin >> amount;
+            my_account.withdraw(amount);
+            cout << "Your withdraw of " << amount << "$ has been successfully proceed !";
+            cout << endl;
+        }
+
+        if (command == "BALANCE") {
+           cout << "Your balance is  " << my_account.get_balance() << "$ !";
+           
+           cout << endl;
+           
+        }
+
+    }
+
+    
+    return 0;
+}
+
+
+double account::get_balance() {
+
+    return balance;
+
+}
