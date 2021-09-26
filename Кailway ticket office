@@ -1,0 +1,136 @@
+#include <iostream>
+#include <limits>
+#include <array>
+
+using namespace std;
+ 
+class Train {
+private:
+	int wagon[10];
+public:
+	Train() {
+		for (int i = 0; i < 10; i++) {
+			wagon[i] = 0;
+		}
+	}
+	void set_place(int place) {
+
+		for (int i = 0; i < 10; i++) {
+
+			if (i == place - 1){
+				wagon[i] = 1;
+			}
+		}
+
+	}
+	void get_wagon();
+};
+
+
+
+int main() {
+	
+
+Train wagon = Train();
+Train wagon1 = Train();
+Train wagon2 = Train();
+Train wagon3 = Train();
+Train wagon4 = Train();
+
+int w_num;
+cout << "This train have only 5 carriages !"<<endl;
+
+
+int place;
+int counter = 0;
+bool stopper = false;
+while (!stopper) {
+	cout << "Input the number of the carriage you want to buy the ticket for."<<endl;
+	if (counter >= 50) {
+		cout << "Tickets are sold out !";
+		stopper = true;
+	}
+	cin >> w_num;
+	if (w_num > 5 || w_num < 1) {
+		cout << "incorrect number of the carriage !";
+		return 0;
+	}
+	cout << "The carriage have only 10 seats. \n '*' = free seat. \n '1' = This place is occupied "<<endl;
+	
+	cout << "You can see all seats of the carriage number "<<w_num <<" below !\nChoose your place !" << endl;
+
+	switch (w_num) {
+
+	case 1:
+
+		
+		wagon.get_wagon();
+		break;
+	case 2:
+		
+		wagon1.get_wagon();
+		break;
+	case 3:
+		
+		wagon2.get_wagon();
+		break;
+	case 4:
+		
+		wagon3.get_wagon();
+		break;
+	case 5:
+		
+		wagon4.get_wagon();
+		break;
+
+
+
+	};
+	cin >> place;
+
+	switch (w_num) {
+		
+	case 1:
+
+		wagon.set_place(place);
+		wagon.get_wagon();
+		break;
+	case 2:
+		wagon1.set_place(place);
+		wagon1.get_wagon();
+		break;
+	case 3:
+		wagon2.set_place(place);
+		wagon2.get_wagon();
+		break;
+	case 4:
+		wagon3.set_place(place);
+		wagon3.get_wagon();
+		break;
+	case 5:
+		wagon4.set_place(place);
+		wagon4.get_wagon();
+		break;
+
+
+		
+	};
+
+	counter++;
+
+}
+
+
+return 0;
+}
+void Train::get_wagon() {
+
+	for (int i = 0; i < 10; i++) {
+		if (wagon[i] == 0) {
+			cout << "*";
+		}
+		else cout << wagon[i];
+		
+	}
+	cout << endl;
+}
