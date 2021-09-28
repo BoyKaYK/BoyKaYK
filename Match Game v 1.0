@@ -1,0 +1,113 @@
+#include <iostream>
+#include <limits>
+#include <array>
+
+using namespace std;
+ 
+class Game {
+private:
+	int match = 100;
+	void start_info() {
+		cout << "Welcome to the game 100 matches, your task is to take matches from the heap with the computer in turn. \n " <<
+			"You can take 1-10 matches at a time. Whoever takes the last match will lose!\n";
+	
+	}
+	void get_player() {
+		int winner = 0;
+		int get_match;
+		cout << "You can take only from 1 to 10 matches\n";
+		cin >> get_match;
+		if (get_match > 10 || get_match < 0 || get_match > match) {
+			cout << "Input error ! \n";
+
+			return;
+		}
+
+		match -= get_match;
+		cout << "There are " << match << " matches in the heap! \n";
+	}
+	void get_bot() {
+
+		int get_match;
+		int winner = 1;
+		if (match > 11) {
+			if (match > 22) {
+				int x;
+				x = match - 23;
+				if (x > 10 || x == 0) {
+					x = 1 + rand() % 10;
+				}
+				get_match = x;
+				bot_info(get_match);
+			}
+			else {
+				if (match > 12) {
+					get_match = match - 12;
+					bot_info(get_match);
+				}
+				else {
+					get_match = 1 + rand() % 10;
+					bot_info(get_match);
+				}
+			}
+
+		}
+		else {
+			if (match > 1) {
+				get_match = match - 1;
+			}
+			else {
+				get_match = 1;
+
+			}
+			bot_info(get_match);
+		}
+
+
+	}
+
+	void bot_info(int get_match) {
+		cout << "Bot get " << get_match << " matches !\n";
+
+		match -= get_match;
+
+		cout << "There are " << match << " matches in the heap !\n";
+
+	}
+	bool end_game() {
+		if (match > 0) {
+			return false;
+		}
+		else return true;
+	}
+
+public:
+	void start() {
+		start_info();
+		while (!end_game()) {
+
+			get_player();
+			if (end_game()) {
+				break;
+			}
+			get_bot();
+	
+		}
+
+	}
+	
+
+};
+
+
+
+int main() {
+	
+	srand(time(NULL));
+	Game game;
+
+	game.start();
+
+
+return 0;
+}
