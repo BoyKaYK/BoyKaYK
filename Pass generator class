@@ -1,0 +1,93 @@
+#include <iostream>
+#include <limits>
+#include <array>
+
+using namespace std;
+int getRandomNumber(int min, int max)
+{
+	static const double fraction = 1.0 / (static_cast<double>(RAND_MAX) + 1.0);
+
+	return static_cast<int>(rand() * fraction * (max - min + 1) + min);
+}
+
+class pass {
+
+public:
+	int lenght;
+	char *pass = new char[lenght];
+	int level;
+	int set_level();
+	void pass_generator(int level);
+
+	void get_pass();
+
+
+};
+void pass::get_pass() {
+	for (int i = 0; i < lenght; i++) {
+		cout << pass[i];
+		
+	}
+	cout << endl;
+}
+int pass::set_level() {
+
+	cout << "choose level from 1 to 3";
+	cin >> level;
+	return level;
+}
+
+void pass::pass_generator(int level) {
+
+	if (level == 1) {
+		lenght = 8;
+		for (int i = 0; i < lenght; i++) {
+
+			pass[i] = getRandomNumber(48, 57);
+
+		}
+	}
+	else if (level == 2) {
+		lenght = 10;
+
+		for (int i = 0; i < lenght; i++) {
+			int key = 0;
+			int rand_num = getRandomNumber(48, 126);
+			while (key == 0) {
+				if (rand_num != 60 && rand_num != 62 && rand_num != 95) {
+					key = rand_num;
+				}
+			}
+
+			pass[i] = key;
+
+		}
+	}
+	else if (level == 3) {
+		lenght = 12;
+		for (int i = 0; i < lenght; i++) {
+			int key = 0;
+			int rand_num = getRandomNumber(48, 126);
+			while (key == 0) {
+				if (rand_num != 60 && rand_num != 62 && rand_num != 95) {
+					key = rand_num;
+				}
+			}
+
+			pass[i] = key;
+
+		}
+	}
+
+}
+
+
+int main() {
+	pass pass_gen;
+	int level = pass_gen.set_level();
+	pass_gen.pass_generator(level);
+	pass_gen.get_pass();
+
+
+	return 0;
+}
