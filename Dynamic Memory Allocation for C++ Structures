@@ -1,0 +1,74 @@
+#include <iostream>
+#include <string.h>
+#include <limits>
+#include <array>
+
+using namespace std;
+
+struct Data
+{
+	int age;
+	string name;
+
+};
+
+
+int main() {
+	Data* objekt = new Data[1];
+	int var = 1;
+	int size = 1;
+	while (var) {
+		if (size == 1) {
+			cout << "name ?";
+			cin >> objekt[size - 1].name;
+			cout << "age ?";
+			cin >> objekt[size - 1].age;
+
+			for (int i = 0; i < size; i++) {
+				cout << objekt[i].name << objekt[i].age << endl;
+
+			}
+
+		}
+		else {
+			Data* copy = new Data[size - 1];
+			
+			for (int i = 0; i < size - 1;i++) {
+
+				copy[i].name = objekt[i].name;
+				copy[i].age = objekt[i].age;
+
+			}
+			
+			delete[] objekt;
+			
+			objekt = new Data[size];
+
+			for (int i = 0; i < size - 1; i++) {
+
+				objekt[i].name = copy[i].name;
+				objekt[i].age = copy[i].age;
+
+			}
+
+			delete[] copy;
+
+			cout << "name ?";
+			cin >> objekt[size - 1].name;
+			cout << "age ?";
+			cin >> objekt[size - 1].age;
+
+			for (int i = 0; i < size; i++) {
+				cout << objekt[i].name << objekt[i].age<< endl;
+
+			}
+
+			cout << "add more ? input '1'";
+			cin >> var;
+				
+		}
+		size++;
+	}
+	delete[] objekt;
+	return 0;
+}
