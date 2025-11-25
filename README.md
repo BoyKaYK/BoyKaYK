@@ -1,5 +1,5 @@
-- 👋 Hi, I’m @BoyKaYK .
-- 👀 I’m interested in coding in my future .
-- 🌱 I’m currently learning C++ , Java & Python in my University .
-- 📫 How to reach me : my Telegram https://t.me/B_Asian .
-
+- 👋 Hi, I’m @BoyKaYK.
+- 👀 I’m interested in coding in my future.
+- 🌱 I’m currently learning C++ , Java & Python in my University.
+- 📫 How to reach me : my Telegram https://t.me/B_Asian.
+- 📝 Check out the list of my personal projects below
